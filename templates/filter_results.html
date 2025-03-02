@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtre Sonuçları - Pardus Sportswear</title>
+    <style>
+        /* ...existing styles... */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-image {
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            background-image: url('https://via.placeholder.com/200');
+        }
+        .product-details {
+            padding: 15px;
+        }
+        .product-category {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .product-price {
+            font-weight: 700;
+            color: #1a237e;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        .stars {
+            color: #ffc107;
+        }
+        .add-to-cart {
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .add-to-cart:hover {
+            background-color: #3949ab;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Pardus<span>Sportswear</span></div>
+                <div class="nav-links">
+                    <a href="/">Ana Sayfa</a>
+                    <a href="/category/Futbol">Futbol Ayakkabıları</a>
+                    <a href="/category/Koşu">Koşu Ayakkabıları</a>
+                    <a href="/category/Basketbol">Basketbol</a>
+                    <a href="/category/Tenis">Tenis</a>
+                    <a href="/category/İndirimler">İndirimler</a>
+                </div>
+                <div class="auth-buttons">
+                    <button class="button login">Giriş Yap</button>
+                    <button class="button signup">Kayıt Ol</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Filtre Sonuçları</h1>
+        <div class="products-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{{ product.image }}" alt="{{ product.name }}" width="200">
+                </div>
+                <div class="product-details">
+                    <div class="product-category">{{ product.category }}</div>
+                    <h3 class="product-title">{{ product.name }}</h3>
+                    <div class="product-price">{{ product.price }} TL</div>
+                    <div class="product-rating">
+                        <div class="stars">{{ product.rating }}</div>
+                    </div>
+                    <button class="add-to-cart">Sepete Ekle</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

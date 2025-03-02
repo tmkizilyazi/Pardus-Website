@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pardus Sportswear - Futbol ve Spor Ayakkabı Mağazası</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #1a237e;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: #f44336;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #3949ab;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .login {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+        }
+
+        .login:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .signup {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .signup:hover {
+            background-color: #e53935;
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1200x600');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: #f44336;
+            color: white;
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #e53935;
+        }
+
+        .features {
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: #1a237e;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-image {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            background-image: url('https://via.placeholder.com/200');
+        }
+
+        .feature-content {
+            padding: 20px;
+        }
+
+        .feature-content h3 {
+            margin-bottom: 10px;
+            color: #1a237e;
+        }
+
+        .products {
+            padding: 60px 0;
+            background-color: #f5f5f5;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 15px;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+        }
+
+        .search-bar {
+            display: flex;
+        }
+
+        .search-input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            width: 250px;
+        }
+
+        .search-button {
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            padding: 0 15px;
+            cursor: pointer;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            background-image: url('https://via.placeholder.com/200');
+        }
+
+        .product-details {
+            padding: 15px;
+        }
+
+        .product-category {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: #1a237e;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            color: #ffc107;
+        }
+
+        .add-to-cart {
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #3949ab;
+        }
+
+        .brands {
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .brands-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .brand {
+            width: 150px;
+            height: 80px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .newsletter {
+            padding: 60px 0;
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            margin-bottom: 20px;
+        }
+
+        .newsletter p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin: 0 auto;
+            max-width: 450px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+
+        .newsletter-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background-color: #e53935;
+        }
+
+        footer {
+            background-color: #0d1642;
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+
+            .filter-options {
+                flex-wrap: wrap;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .search-input {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="/assests/PARDUS AYK.-1.png" alt="Pardus Sportswear Logo"
+                        style="height: 40px; margin-right: 10px;">
+                    <span>Pardus<span>Sportswear</span></span>
+                </div>
+                <div class="nav-links">
+                    <a href="/">Ana Sayfa</a>
+                    <a href="/category/Futbol">Futbol Ayakkabıları</a>
+                    <a href="/category/Koşu">Koşu Ayakkabıları</a>
+                    <a href="/category/Basketbol">Basketbol</a>
+                    <a href="/category/Tenis">Tenis</a>
+                    <a href="/category/İndirimler">İndirimler</a>
+                </div>
+                <div class="auth-buttons">
+                    <button class="button login">Giriş Yap</button>
+                    <button class="button signup">Kayıt Ol</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>En İyi Performans için En İyi Ayakkabılar</h1>
+                <p>Profesyonel futbol ayakkabılarından günlük spor ayakkabılarına kadar geniş ürün yelpazemizle her
+                    ihtiyaca uygun çözümler sunuyoruz.</p>
+                <button class="cta-button">Hemen Alışverişe Başla</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Neden Bizi Tercih Etmelisiniz?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-image">
+                        [Ücretsiz Kargo Görseli]
+                    </div>
+                    <div class="feature-content">
+                        <h3>Ücretsiz Kargo</h3>
+                        <p>200 TL ve üzeri alışverişlerinizde Türkiye'nin her yerine ücretsiz kargo.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-image">
+                        [Orijinal Ürün Görseli]
+                    </div>
+                    <div class="feature-content">
+                        <h3>%100 Orijinal Ürünler</h3>
+                        <p>Sadece resmi distribütörlerden temin edilen %100 orijinal ürünler.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-image">
+                        [Kolay İade Görseli]
+                    </div>
+                    <div class="feature-content">
+                        <h3>30 Gün İade Garantisi</h3>
+                        <p>Memnun kalmazsanız 30 gün içinde koşulsuz iade imkanı.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products">
+        <div class="container">
+            <h2 class="section-title">Popüler Ürünlerimiz</h2>
+
+            <div class="filter-bar">
+                <form action="/" method="get" class="filter-options">
+                    <select name="category" class="filter-select">
+                        <option value="">Kategoriler</option>
+                        <option value="Futbol">Futbol</option>
+                        <option value="Koşu">Koşu</option>
+                        <option value="Basketbol">Basketbol</option>
+                        <option value="Tenis">Tenis</option>
+                    </select>
+                    <select name="brand" class="filter-select">
+                        <option value="">Markalar</option>
+                        <option value="Nike">Nike</option>
+                        <option value="Adidas">Adidas</option>
+                        <option value="Puma">Puma</option>
+                        <option value="New Balance">New Balance</option>
+                    </select>
+                    <select name="price_range" class="filter-select">
+                        <option value="">Fiyat</option>
+                        <option value="0-500">0 - 500 TL</option>
+                        <option value="500-1000">500 - 1000 TL</option>
+                        <option value="1000-2000">1000 - 2000 TL</option>
+                        <option value="2000-">2000 TL ve üzeri</option>
+                    </select>
+                    <button type="submit" class="search-button">Filtrele</button>
+                </form>
+                <div class="search-bar">
+                    <form action="/" method="get">
+                        <input type="text" name="q" class="search-input" placeholder="Aradığınız ürünü yazın...">
+                        <button type="submit" class="search-button">Ara</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="products-grid">
+                {% for product in products %}
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="{{ product.image }}" alt="{{ product.name }}" width="200">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-category">{{ product.category }}</div>
+                        <h3 class="product-title">{{ product.name }}</h3>
+                        <div class="product-price">{{ product.price }} TL</div>
+                        <div class="product-rating">
+                            <div class="stars">{{ product.rating }}</div>
+                        </div>
+                        <a href="/add_to_cart/{{ product.id }}" class="add-to-cart">Sepete Ekle</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="brands">
+        <div class="container">
+            <h2 class="section-title">Çalıştığımız Markalar</h2>
+            <div class="brands-container">
+                <div class="brand">Pardus Sportswear</div>
+                <div class="brand">Pardus Sportswear</div>
+                <div class="brand">Pardus Sportswear</div>
+                <div class="brand">Pardus Sportswear</div>
+                <div class="brand">Pardus Sportswear</div>
+                <div class="brand">Pardus Sportswear</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-container">
+                <h2>Kampanyalardan Haberdar Olun</h2>
+                <p>En yeni ürünler, özel teklifler ve indirimlerden ilk siz haberdar olmak için e-bültenimize abone
+                    olun.</p>
+                <div class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="E-posta adresiniz">
+                    <button class="newsletter-button">Abone Ol</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Pardus Sportswear</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Hakkımızda</a></li>
+                        <li><a href="#">Kariyer</a></li>
+                        <li><a href="#">Mağazalarımız</a></li>
+                        <li><a href="#">Basında Biz</a></li>
+                        <li><a href="#">İletişim</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Müşteri Hizmetleri</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Sıkça Sorulan Sorular</a></li>
+                        <li><a href="#">Sipariş Takibi</a></li>
+                        <li><a href="#">İade ve Değişim</a></li>
+                        <li><a href="#">Kargo ve Teslimat</a></li>
+                        <li><a href="#">Ödeme Seçenekleri</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Kategoriler</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Futbol Ayakkabıları</a></li>
+                        <li><a href="#">Koşu Ayakkabıları</a></li>
+                        <li><a href="#">Basketbol Ayakkabıları</a></li>
+                        <li><a href="#">Tenis Ayakkabıları</a></li>
+                        <li><a href="#">Günlük Spor Ayakkabılar</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>İletişim</h3>
+                    <ul class="footer-links">
+                        <li>Telefon: 0850 123 45 67</li>
+                        <li>E-posta: pardussoccer@hotmail.com</li>
+                        <li>Adres: Atatürk Caddesi No:123 İstanbul</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                &copy; 2025 Pardus Sportswear. Tüm hakları saklıdır.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

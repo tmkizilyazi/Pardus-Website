@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eticaret13 - Spor Ayakkabı Mağazası</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #111;
+            color: white;
+            padding: 10px 0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        
+        .nav-links a:hover {
+            color: #4de6de;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
+        }
+        
+        .hero {
+            background-image: linear-gradient(to right, #4de6de, #8be3ce);
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            padding-top: 50px;
+            padding-left: 50px;
+            width: 50%;
+            color: white;
+        }
+        
+        .slogan-tag {
+            display: inline-block;
+            border: 1px solid white;
+            padding: 5px 15px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.9;
+            text-transform: uppercase;
+        }
+        
+        .cta-button {
+            background-color: white;
+            color: #333;
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .featured-shoe {
+            position: absolute;
+            right: 10%;
+            top: 20%;
+            width: 45%;
+            max-width: 500px;
+        }
+        
+        .banner-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .banner-large {
+            grid-column: span 1;
+            height: 250px;
+            background-color: #ddd;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner-double {
+            grid-column: span 1;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 10px;
+            height: 250px;
+        }
+        
+        .banner-small {
+            height: 120px;
+            background-color: #ddd;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .banner-subtext {
+            font-size: 14px;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+        
+        .categories {
+            padding: 30px 0;
+        }
+        
+        .categories-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .category-tab {
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .category-tab.active {
+            color: #000;
+            font-weight: bold;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 10px;
+        }
+        
+        .product-image {
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .product-image img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+        
+        .product-details {
+            padding: 5px;
+        }
+        
+        .product-category {
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 13px;
+            min-height: 40px;
+        }
+        
+        .product-price {
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        
+        .product-price .original {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 13px;
+            margin-left: 5px;
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .stars {
+            color: #ffc107;
+            font-size: 13px;
+        }
+        
+        .footer-banner {
+            background-color: #4de6de;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 30px;
+        }
+        
+        .footer-banner a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .banner-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content {
+                width: 100%;
+                padding: 30px 20px;
+            }
+            
+            .featured-shoe {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">FİRMA LOGO</div>
+                <div class="nav-links">
+                    <a href="#">İNDİRİMDEKİLER</a>
+                    <a href="#">ÜRÜNLER GÜNÜ</a>
+                    <a href="#">SAYFALAR</a>
+                    <a href="#">LOGİTECH İNDİRİMİ</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="slogan-tag">SLOGAN</div>
+                <h1>SLOGAN<br>MAĞAZA</h1>
+                <p>AÇIKLAMA ALANI</p>
+                <button class="cta-button">Alışverişe Başla →</button>
+            </div>
+        </div>
+        <img src="/api/placeholder/500/300" alt="Featured Shoe" class="featured-shoe">
+    </section>
+    
+    <div class="container">
+        <section class="banner-section">
+            <div class="banner-large" style="background-image: url('/api/placeholder/400/250'); background-size: cover; background-position: center;">
+                <div class="banner-text">
+                    BANNER<br>ALANI
+                    <div class="banner-subtext">DİKKAT</div>
+                </div>
+            </div>
+            
+            <div class="banner-double">
+                <div class="banner-small" style="background-image: url('/api/placeholder/400/120'); background-size: cover; background-position: center;">
+                    <div class="banner-text">
+                        BANNER ALANI
+                        <div class="banner-subtext">DİKKAT</div>
+                    </div>
+                </div>
+                <div class="banner-small" style="background-image: url('/api/placeholder/400/120'); background-size: cover; background-position: center;">
+                    <div class="banner-text">
+                        BANNER ALANI
+                        <div class="banner-subtext">DİKKAT</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="banner-large" style="background-image: url('/api/placeholder/400/250'); background-size: cover; background-position: center;">
+                <div class="banner-text">
+                    BANNER<br>ALANI
+                    <div class="banner-subtext">DİKKAT</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="categories">
+            <h2 class="categories-title">Mağaza Slogan Kategori yazı</h2>
+            <div class="category-tabs">
+                <div class="category-tab active">Tüm Kategoriler</div>
+                <div class="category-tab">Kategori</div>
+                <div class="category-tab">Kategori</div>
+                <div class="category-tab">Kategori</div>
+                <div class="category-tab">Kategori</div>
+                <div class="category-tab">Kategori</div>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/api/placeholder/120/120" alt="Nike Shoe">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-price">₺ 16.120,00</div>
+                        <h3 class="product-title">Nike Air Free Run Motion Fly Knit 2017</h3>
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/api/placeholder/120/120" alt="Jordan Shoe">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-price">₺ 12.990,00</div>
+                        <h3 class="product-title">Jordan Trainer 1 Low</h3>
+                        <div class="product-rating">
+                            <div class="stars">★★★★☆</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/api/placeholder/120/120" alt="Nike Jr. Tiempo">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-price">₺ 449,00</div>
+                        <h3 class="product-title">Nike Jr. Tiempo Legend VI FG</h3>
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/api/placeholder/120/120" alt="Nike LeBron">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-price">₺ 140,00</div>
+                        <h3 class="product-title">Nike LeBron Soldier XI Flyease</h3>
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/api/placeholder/120/120" alt="Nike Stefan">
+                    </div>
+                    <div class="product-details">
+                        <div class="product-price">₺ 349,97 <span class="original">₺ 649,00</span></div>
+                        <h3 class="product-title">Nike Stefan Janoski Max Negro</h3>
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div class="footer-banner">
+        <div class="container">
+            www.bmdesigners.com Hazır E-Ticaret Sistemleri için Lütfen İletişime Geçiniz...
+        </div>
+    </div>
+    
+</body>
+</html>

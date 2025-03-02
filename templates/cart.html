@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sepet - Pardus Sportswear</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .cart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        .cart-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .cart-item:hover {
+            transform: translateY(-5px);
+        }
+        .cart-image {
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            background-image: url('https://via.placeholder.com/200');
+        }
+        .cart-details {
+            padding: 15px;
+        }
+        .cart-category {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        .cart-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .cart-price {
+            font-weight: 700;
+            color: #1a237e;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .cart-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+        .stars {
+            color: #ffc107;
+        }
+        .remove-from-cart {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .remove-from-cart:hover {
+            background-color: #e53935;
+        }
+        .checkout-button {
+            background-color: #1a237e;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        .checkout-button:hover {
+            background-color: #3949ab;
+        }
+        .total-price {
+            text-align: right;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="/assets/PARDUS AYK.-1.png" alt="Pardus Sportswear Logo" style="height: 40px; margin-right: 10px;">
+                    <span>Pardus<span>Sportswear</span></span>
+                </div>
+                <div class="nav-links">
+                    <a href="/">Ana Sayfa</a>
+                    <a href="/category/Futbol">Futbol Ayakkabıları</a>
+                    <a href="/category/Koşu">Koşu Ayakkabıları</a>
+                    <a href="/category/Basketbol">Basketbol</a>
+                    <a href="/category/Tenis">Tenis</a>
+                    <a href="/category/İndirimler">İndirimler</a>
+                </div>
+                <div class="auth-buttons">
+                    <button class="button login">Giriş Yap</button>
+                    <button class="button signup">Kayıt Ol</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Sepetiniz</h1>
+        <div class="cart-grid">
+            {% for item in cart_items %}
+            <div class="cart-item">
+                <div class="cart-image">
+                    <img src="{{ item.image }}" alt="{{ item.name }}" width="200">
+                </div>
+                <div class="cart-details">
+                    <div class="cart-category">{{ item.category }}</div>
+                    <h3 class="cart-title">{{ item.name }}</h3>
+                    <div class="cart-price">{{ item.price }} TL</div>
+                    <div class="cart-rating">
+                        <div class="stars">{{ item.rating }}</div>
+                    </div>
+                    <a href="/remove_from_cart/{{ item.id }}" class="remove-from-cart">Sepetten Çıkar</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="total-price">Toplam Fiyat: {{ total_price }} TL</div>
+        <form action="/checkout" method="POST">
+            <button type="submit" class="checkout-button">Ödeme Yap</button>
+        </form>
+    </div>
+</body>
+</html>

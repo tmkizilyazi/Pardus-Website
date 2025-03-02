@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Pardus Sportswear</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #1a237e;
+            color: white;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input, button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #1a237e;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3949ab;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="/assets/PARDUS AYK.-1.png" alt="Pardus Sportswear Logo" style="height: 40px; margin-right: 10px;">
+                    <span>Pardus<span>Sportswear</span></span>
+                </div>
+                <div class="nav-links">
+                    <a href="/">Ana Sayfa</a>
+                    <a href="/category/Futbol">Futbol Ayakkabıları</a>
+                    <a href="/category/Koşu">Koşu Ayakkabıları</a>
+                    <a href="/category/Basketbol">Basketbol</a>
+                    <a href="/category/Tenis">Tenis</a>
+                    <a href="/category/İndirimler">İndirimler</a>
+                </div>
+                <div class="auth-buttons">
+                    <button class="button login">Giriş Yap</button>
+                    <button class="button signup">Kayıt Ol</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <h1>Admin Panel - Pardus Sportswear</h1>
+        <form action="/admin/add" method="POST">
+            <input type="text" name="name" placeholder="Ürün Adı" required>
+            <input type="text" name="category" placeholder="Kategori" required>
+            <input type="number" name="price" placeholder="Fiyat" required>
+            <input type="text" name="rating" placeholder="Değerlendirme" required>
+            <input type="text" name="image" placeholder="Resim URL" required>
+            <button type="submit">Ürün Ekle</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ürün Adı</th>
+                    <th>Kategori</th>
+                    <th>Fiyat</th>
+                    <th>Değerlendirme</th>
+                    <th>Resim</th>
+                    <th>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.rating }}</td>
+                    <td><img src="{{ product.image }}" alt="{{ product.name }}" width="50"></td>
+                    <td>
+                        <form action="/admin/update/{{ loop.index0 }}" method="POST" style="display:inline;">
+                            <input type="text" name="name" value="{{ product.name }}" required>
+                            <input type="text" name="category" value="{{ product.category }}" required>
+                            <input type="number" name="price" value="{{ product.price }}" required>
+                            <input type="text" name="rating" value="{{ product.rating }}" required>
+                            <input type="text" name="image" value="{{ product.image }}" required>
+                            <button type="submit">Güncelle</button>
+                        </form>
+                        <form action="/admin/delete/{{ loop.index0 }}" method="POST" style="display:inline;">
+                            <button type="submit">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
