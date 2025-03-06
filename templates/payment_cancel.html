@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ödeme İptal Edildi - Pardus</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fbf9f7;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(to right, #1a2a3a, #2c3e50);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid #d4af37;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo span {
+            color: #d4af37;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .cancel-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        .cancel-card {
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            border-top: 3px solid #FF5252;
+        }
+
+        .cancel-icon {
+            width: 100px;
+            height: 100px;
+            background-color: #FF5252;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .cancel-icon svg {
+            width: 50px;
+            height: 50px;
+            fill: white;
+        }
+
+        .cancel-card h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: #1a2a3a;
+        }
+
+        .cancel-card p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #1a2a3a;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background-color: #d4af37;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background-color: #1a2a3a;
+            color: white;
+            padding: 20px 0;
+            margin-top: auto;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="/assests/PARDUS AYK.-1.png" alt="Pardus Logo">
+                <span>Pardus</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="cancel-container">
+        <div class="cancel-card">
+            <div class="cancel-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path
+                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                </svg>
+            </div>
+            <h1>Ödeme İptal Edildi</h1>
+            <p>Ödeme işleminiz iptal edildi veya tamamlanamadı. Herhangi bir ücret kartınızdan çekilmemiştir.</p>
+            <p>Sorun yaşıyorsanız veya yardıma ihtiyacınız varsa, lütfen destek ekibimizle iletişime geçin.</p>
+            <div>
+                <a href="/" class="btn">Ana Sayfaya Dön</a>
+                <a href="/create-checkout-session" class="btn">Tekrar Dene</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 Pardus. Tüm hakları saklıdır. TÜBİTAK ULAKBİM tarafından geliştirilmektedir.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
