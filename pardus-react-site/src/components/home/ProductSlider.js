@@ -1,210 +1,284 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
-import { FaShoppingCart, FaStar, FaStarHalfAlt, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { FaShoppingCart, FaStar, FaStarHalfAlt, FaArrowRight, FaArrowLeft, FaEye } from 'react-icons/fa';
+import { useCart } from '../../context/CartContext';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const ProductSlider = () => {
-    const products = [
-        {
-            id: 1,
-            name: "Krampo X9 Pro",
-            price: 2499.99,
-            discount: 2999.99,
-            rating: 4.9,
-            reviews: 128,
-            image: "https://i.imgur.com/LRoQXhh.png",
-            category: "Profesyonel",
-            new: true,
-            colors: ["#000000", "#ff6b00", "#0057ff"]
-        },
-        {
-            id: 2,
-            name: "Krampo Velocity",
-            price: 1899.99,
-            discount: null,
-            rating: 4.7,
-            reviews: 94,
-            image: "https://i.imgur.com/QTtOnFh.png",
-            category: "Hız",
-            new: false,
-            colors: ["#ff0000", "#ffffff", "#000000"]
-        },
-        {
-            id: 3,
-            name: "Krampo PrecisionX",
-            price: 2199.99,
-            discount: 2499.99,
-            rating: 4.8,
-            reviews: 112,
-            image: "https://i.imgur.com/0jYvuDv.png",
-            category: "Kontrol",
-            new: true,
-            colors: ["#ffd700", "#000000", "#ffffff"]
-        },
-        {
-            id: 4,
-            name: "Krampo Defender",
-            price: 1699.99,
-            discount: null,
-            rating: 4.6,
-            reviews: 86,
-            image: "https://i.imgur.com/UVEjFKZ.png",
-            category: "Defans",
-            new: false,
-            colors: ["#28a745", "#000000", "#333333"]
-        },
-        {
-            id: 5,
-            name: "Krampo Elite",
-            price: 2799.99,
-            discount: 3299.99,
-            rating: 5.0,
-            reviews: 74,
-            image: "https://i.imgur.com/0jfbVFw.png",
-            category: "Premium",
-            new: true,
-            colors: ["#000000", "#ffd700", "#ffffff"]
-        }
-    ];
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
+  const [addedToCartMap, setAddedToCartMap] = useState({});
 
-    const NextArrow = (props) => {
-        const { onClick } = props;
-        return (
-            <ArrowButton right onClick={onClick}>
-                <FaArrowRight />
-            </ArrowButton>
-        );
-    };
+  const products = [
+    {
+      id: 1,
+      name: "Krampo X9 Pro",
+      price: 2499.99,
+      discount: 2999.99,
+      rating: 4.9,
+      reviews: 128,
+      image: "/PARDUS AYK.-1.png",
+      category: "Profesyonel",
+      new: true,
+      colors: ["#000000", "#ff6b00", "#0057ff"],
+      sizes: [
+        { id: 1, size: "40" },
+        { id: 2, size: "41" },
+        { id: 3, size: "42" }
+      ],
+      stock: 15
+    },
+    {
+      id: 2,
+      name: "Krampo Velocity",
+      price: 1899.99,
+      discount: null,
+      rating: 4.7,
+      reviews: 94,
+      image: "/PARDUS AYK.-1.png",
+      category: "Hız",
+      new: false,
+      colors: ["#ff0000", "#ffffff", "#000000"],
+      sizes: [
+        { id: 1, size: "39" },
+        { id: 2, size: "40" },
+        { id: 3, size: "41" }
+      ],
+      stock: 10
+    },
+    {
+      id: 3,
+      name: "Krampo PrecisionX",
+      price: 2199.99,
+      discount: 2499.99,
+      rating: 4.8,
+      reviews: 112,
+      image: "/PARDUS AYK.-1.png",
+      category: "Kontrol",
+      new: true,
+      colors: ["#ffd700", "#000000", "#ffffff"],
+      sizes: [
+        { id: 1, size: "40" },
+        { id: 2, size: "42" },
+        { id: 3, size: "43" }
+      ],
+      stock: 8
+    },
+    {
+      id: 4,
+      name: "Krampo Defender",
+      price: 1699.99,
+      discount: null,
+      rating: 4.6,
+      reviews: 86,
+      image: "/PARDUS AYK.-1.png",
+      category: "Defans",
+      new: false,
+      colors: ["#28a745", "#000000", "#333333"],
+      sizes: [
+        { id: 1, size: "38" },
+        { id: 2, size: "39" },
+        { id: 3, size: "40" }
+      ],
+      stock: 12
+    },
+    {
+      id: 5,
+      name: "Krampo Elite",
+      price: 2799.99,
+      discount: 3299.99,
+      rating: 5.0,
+      reviews: 74,
+      image: "/PARDUS AYK.-1.png",
+      category: "Premium",
+      new: true,
+      colors: ["#000000", "#ffd700", "#ffffff"],
+      sizes: [
+        { id: 1, size: "41" },
+        { id: 2, size: "42" },
+        { id: 3, size: "43" }
+      ],
+      stock: 5
+    }
+  ];
 
-    const PrevArrow = (props) => {
-        const { onClick } = props;
-        return (
-            <ArrowButton left onClick={onClick}>
-                <FaArrowLeft />
-            </ArrowButton>
-        );
-    };
-
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
-        responsive: [
-            {
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1
-                }
-            },
-            {
-                breakpoint: 576,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ]
-    };
-
-    // Star rendering helper
-    const renderStars = (rating) => {
-        const stars = [];
-        const fullStars = Math.floor(rating);
-        const hasHalfStar = rating % 1 !== 0;
-
-        for (let i = 0; i < fullStars; i++) {
-            stars.push(<FaStar key={`star-${i}`} />);
-        }
-
-        if (hasHalfStar) {
-            stars.push(<FaStarHalfAlt key="half-star" />);
-        }
-
-        return stars;
-    };
-
+  const NextArrow = (props) => {
+    const { onClick } = props;
     return (
-        <ProductSection>
-            <Container>
-                <SectionHeader>
-                    <motion.h2
-                        initial={{ opacity: 0, y: -20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        YENİ SEZON ÜRÜNLER
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
-                        En yüksek performans için tasarlanmış yeni sezon kramponlarımızı keşfedin
-                    </motion.p>
-                </SectionHeader>
-
-                <StyledSlider {...settings}>
-                    {products.map((product) => (
-                        <ProductCard key={product.id}>
-                            {product.new && <NewBadge>YENİ</NewBadge>}
-                            {product.discount && (
-                                <DiscountBadge>
-                                    {Math.round(((product.discount - product.price) / product.discount) * 100)}%
-                                </DiscountBadge>
-                            )}
-                            <ProductImage>
-                                <img src={product.image} alt={product.name} />
-                            </ProductImage>
-                            <ProductInfo>
-                                <ProductCategory>{product.category}</ProductCategory>
-                                <ProductName>{product.name}</ProductName>
-                                <PriceContainer>
-                                    <ProductPrice>{product.price.toLocaleString('tr-TR')} ₺</ProductPrice>
-                                    {product.discount && (
-                                        <OldPrice>{product.discount.toLocaleString('tr-TR')} ₺</OldPrice>
-                                    )}
-                                </PriceContainer>
-                                <RatingContainer>
-                                    <Stars>{renderStars(product.rating)}</Stars>
-                                    <ReviewCount>({product.reviews})</ReviewCount>
-                                </RatingContainer>
-                                <ColorOptions>
-                                    {product.colors.map((color, idx) => (
-                                        <ColorOption
-                                            key={idx}
-                                            color={color}
-                                            className={idx === 0 ? 'active' : ''}
-                                        />
-                                    ))}
-                                </ColorOptions>
-                                <AddToCartButton>
-                                    <FaShoppingCart />
-                                    <span>Sepete Ekle</span>
-                                </AddToCartButton>
-                            </ProductInfo>
-                        </ProductCard>
-                    ))}
-                </StyledSlider>
-
-                <ViewAllButton to="/urunler">
-                    <span>Tüm Ürünleri Gör</span>
-                    <FaArrowRight />
-                </ViewAllButton>
-            </Container>
-        </ProductSection>
+      <ArrowButton right onClick={onClick}>
+        <FaArrowRight />
+      </ArrowButton>
     );
+  };
+
+  const PrevArrow = (props) => {
+    const { onClick } = props;
+    return (
+      <ArrowButton left onClick={onClick}>
+        <FaArrowLeft />
+      </ArrowButton>
+    );
+  };
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+        }
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
+  };
+
+  // Star rendering helper
+  const renderStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(<FaStar key={`star-${i}`} />);
+    }
+
+    if (hasHalfStar) {
+      stars.push(<FaStarHalfAlt key="half-star" />);
+    }
+
+    return stars;
+  };
+
+  const handleProductClick = (productId) => {
+    navigate(`/urun/${productId}`);
+  };
+
+  const handleAddToCart = (e, product) => {
+    e.stopPropagation();
+    addToCart(product, product.sizes ? product.sizes[0].size : "Standart", product.colors[0].code || product.colors[0], 1);
+
+    setAddedToCartMap(prev => ({
+      ...prev,
+      [product.id]: true
+    }));
+
+    setTimeout(() => {
+      setAddedToCartMap(prev => ({
+        ...prev,
+        [product.id]: false
+      }));
+    }, 2000);
+  };
+
+  return (
+    <ProductSection>
+      <Container>
+        <SectionHeader>
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            YENİ SEZON ÜRÜNLER
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            En yüksek performans için tasarlanmış yeni sezon kramponlarımızı keşfedin
+          </motion.p>
+        </SectionHeader>
+
+        <StyledSlider {...settings}>
+          {products.map((product) => (
+            <ProductCard key={product.id}>
+              {product.new && <NewBadge>YENİ</NewBadge>}
+              {product.discount && (
+                <DiscountBadge>
+                  {Math.round(((product.discount - product.price) / product.discount) * 100)}%
+                </DiscountBadge>
+              )}
+              <ProductImage onClick={() => handleProductClick(product.id)}>
+                <img src={product.image} alt={product.name} />
+                <ViewButton onClick={(e) => {
+                  e.stopPropagation();
+                  handleProductClick(product.id);
+                }}>
+                  <FaEye />
+                  <span>İncele</span>
+                </ViewButton>
+              </ProductImage>
+              <ProductInfo>
+                <ProductCategory>{product.category}</ProductCategory>
+                <ProductName onClick={() => handleProductClick(product.id)}>
+                  {product.name}
+                </ProductName>
+                <PriceContainer>
+                  <ProductPrice>{product.price.toLocaleString('tr-TR')} ₺</ProductPrice>
+                  {product.discount && (
+                    <OldPrice>{product.discount.toLocaleString('tr-TR')} ₺</OldPrice>
+                  )}
+                </PriceContainer>
+                <RatingContainer>
+                  <Stars>{renderStars(product.rating)}</Stars>
+                  <ReviewCount>({product.reviews})</ReviewCount>
+                </RatingContainer>
+                <ColorOptions>
+                  {product.colors.map((color, index) => (
+                    <ColorOption
+                      key={index}
+                      color={typeof color === 'string' ? color : color.code}
+                      className={index === 0 ? 'active' : ''}
+                    />
+                  ))}
+                </ColorOptions>
+                <AddToCartButton onClick={(e) => handleAddToCart(e, product)}>
+                  {addedToCartMap[product.id] ? (
+                    <>✓ Sepete Eklendi</>
+                  ) : (
+                    <>
+                      <FaShoppingCart />
+                      <span>Sepete Ekle</span>
+                    </>
+                  )}
+                </AddToCartButton>
+              </ProductInfo>
+            </ProductCard>
+          ))}
+        </StyledSlider>
+
+        <ViewAllButton to="/koleksiyon-kesfet">
+          <span>Koleksiyonu Keşfet</span>
+          <FaArrowRight />
+        </ViewAllButton>
+      </Container>
+    </ProductSection>
+  );
 };
 
 const ProductSection = styled.section`
@@ -346,18 +420,68 @@ const ProductImage = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f8f8f8;
+  background-color: ${props => props.theme.colors.backgroundAlt};
   padding: 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
   
   img {
     max-height: 100%;
     max-width: 100%;
     object-fit: contain;
-    transition: transform 0.3s;
+    transition: transform 0.5s;
+    position: relative;
+    z-index: 1;
   }
   
   ${ProductCard}:hover & img {
     transform: scale(1.05) rotate(-5deg);
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 72, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0) 70%
+    );
+    z-index: 0;
+  }
+`;
+
+const ViewButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: ${props => props.theme.colors.primary};
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 2;
+  border: none;
+  cursor: pointer;
+  
+  ${ProductImage}:hover & {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  &:hover {
+    background-color: ${props => props.theme.colors.secondary};
   }
 `;
 
@@ -376,8 +500,14 @@ const ProductCategory = styled.div`
 const ProductName = styled.h3`
   margin-bottom: 10px;
   font-size: 18px;
-  color: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.text};
   font-weight: 700;
+  cursor: pointer;
+  transition: ${props => props.theme.transitions.default};
+  
+  &:hover {
+    color: ${props => props.theme.colors.primary};
+  }
 `;
 
 const PriceContainer = styled.div`
@@ -444,7 +574,7 @@ const ColorOption = styled.div`
 const AddToCartButton = styled.button`
   width: 100%;
   padding: 12px 20px;
-  background-color: ${props => props.theme.colors.secondary};
+  background-color: ${props => props.theme.colors.primary};
   color: white;
   border: none;
   border-radius: 4px;
@@ -457,18 +587,18 @@ const AddToCartButton = styled.button`
   transition: ${props => props.theme.transitions.default};
   
   &:hover {
-    background-color: ${props => props.theme.colors.primary};
+    background-color: ${props => props.theme.colors.secondary};
   }
 `;
 
-const ViewAllButton = styled.a`
+const ViewAllButton = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   background-color: transparent;
-  color: ${props => props.theme.colors.secondary};
-  border: 2px solid ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.primary};
+  border: 2px solid ${props => props.theme.colors.primary};
   padding: 15px 30px;
   border-radius: 4px;
   font-weight: 600;
@@ -480,7 +610,7 @@ const ViewAllButton = styled.a`
   text-align: center;
   
   &:hover {
-    background-color: ${props => props.theme.colors.secondary};
+    background-color: ${props => props.theme.colors.primary};
     color: white;
     transform: translateY(-3px);
   }

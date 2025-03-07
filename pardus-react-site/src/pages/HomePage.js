@@ -1,17 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import Hero from '../components/home/Hero';
 import Features from '../components/home/Features';
 import ProductSlider from '../components/home/ProductSlider';
+import LatestProducts from '../components/home/LatestProducts';
 import { motion } from 'framer-motion';
 import { FaShippingFast, FaAward, FaUndo, FaHeadset, FaInstagram, FaFacebookF, FaTwitter } from 'react-icons/fa';
+import Hero3D from '../components/home/Hero3D';
 
 const HomePage = () => {
   return (
     <>
-      <Hero />
+      <Hero3D />
       <Features />
       <ProductSlider />
+      <LatestProducts />
       <BenefitsSection />
       <TestimonialSection />
       <InstagramSection />
